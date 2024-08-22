@@ -1,0 +1,138 @@
+create table alunos (
+id int not null auto_increment,
+nome varchar(255),
+data_nascimento date,
+turma varchar(2),
+email varchar(255),
+primary key (id)
+)default charset = utf8;  
+
+
+
+
+insert into alunos values
+(DEFAULT, 'João Silva','2005-03-15','8A','joao.silva@email.com');
+
+
+
+
+select * from alunos;
+
+
+
+
+create table professores (
+id int not null auto_increment,
+nome varchar(255),
+materia varchar(30),
+salario decimal(4,3),
+primary key (id)
+)default charset = utf8;
+
+
+
+
+insert into professores values
+(default,'Roberto Cardoso','Portugues','2.500'),
+(default,'Carlos Alberto','Ingles','2.000');
+
+
+
+
+
+
+select * from professores;
+
+
+
+
+create database biblioteca;
+
+
+
+create table livros (
+id int not null auto_increment,
+titulo varchar(50),
+autor varchar (100),
+ano int,
+disponivel boolean,
+primary key (id)
+)default charset = utf8;
+
+
+
+insert into livros values
+(default,'pequeno principe','Antoine de Saint-Exupéry','1943','1'),
+(default,'João capelo gaivota','Richard Bach','1970','0'),
+(default,'Marley e Eu','John Grogan','2005','0');
+
+
+
+select * from livros;
+
+
+
+
+
+create database empresa;
+
+
+
+
+create table funcionarios (
+id int not null auto_increment,
+nome varchar (100),
+cargo varchar (30),
+salario decimal(4,3),
+data_adm date,
+primary key (id)
+)default charset = utf8;
+
+
+insert into funcionarios values
+(default,'João capelo gaivota','analista de dados','8.400','2001-03-13');
+
+
+select * from funcionarios;
+
+
+
+create database cinema;
+
+
+create table filmes (
+id int not null auto_increment,
+titulo varchar(100),
+diretor varchar(100),
+genero varchar(30),
+duração int,
+faixa_etaria int,
+primary key (id)
+)default charset = utf8;
+
+insert into filmes values
+(default,'Constantine','Francis Lawrence','ação','121','14');
+
+
+
+select * from filmes;
+
+
+
+create database musica;
+
+
+
+create table albuns (
+id int not null auto_increment,
+nome varchar(100),
+artista varchar(50),
+lançamento int,
+genero varchar(30),
+primary key (id)
+)default charset = utf8;
+
+
+insert into albuns values
+(default,'fenda da sunga','mc VV','2022','rap'),
+(default,'shadow 4EVER','mc vv','2022','rap');
