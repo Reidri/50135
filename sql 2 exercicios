@@ -1,0 +1,117 @@
+-- 2° lista de exercicios
+
+create database ecommerce;
+
+create table produtos (
+id int not null auto_increment,
+nome varchar(50),
+preço int,
+primary key (id)
+)default charset = utf8mb4;
+
+alter table produtos
+add column descrição tinytext after nome;
+
+create table clientes (
+id int not null auto_increment,
+nome varchar(50),
+primary key (id)
+)default charset = utf8mb4;
+
+alter table clientes
+add column email varchar(50) first,
+add column telefone varchar(20) after nome;
+
+alter table clientes
+modify column telefone bigint unsigned;
+
+insert into clientes values
+('joaozinho@email.com',default,'joao silva oliveira','519834212'),
+('danielzinho@email.com',default,'daniel oliveira da silva','51985134531');
+
+select * from clientes;
+
+alter table clientes
+rename to usuarios;
+
+create database livraria;
+
+create table livros (
+nome varchar(50),
+autor varchar(100),
+ano_publicação year
+)default charset = utf8mb4;
+
+alter table livros
+add column id int;
+
+alter table livros
+add primary key(id);
+
+alter table livros
+modify id int not null auto_increment;
+
+alter table livros
+add column estoque int default '0';
+
+alter table livros
+modify column id int not null auto_increment first;
+
+insert into livros values
+(default,'joao capelo gaivota','richard bach','1988','12'),
+(default,'pequeno principe','big prince','1950','13'),
+(default,'flappy jack','capetão falange','2012','14');
+
+select * from livros;
+
+drop table if exists livros;
+
+create database RH;
+
+create table funcionarios (
+nome varchar (100),
+cargo varchar (20),
+salario decimal (4,3)
+)default charset = utf8mb4;
+
+alter table funcionarios
+add column id int first,
+add primary key (id);
+
+alter table funcionarios
+modify column id int not null auto_increment;
+
+insert into funcionarios values
+(default,'joao oliveira avlis','funcionario','4.500');
+
+alter table funcionarios
+rename column salario to remuneração;
+
+create database streaming;
+
+create table series (
+id int not null auto_increment,
+titulo varchar (50) unique,
+genero varchar (20),
+num_temporadas int,
+primary key (id)
+)default charset=utf8mb4;
+
+insert into series values
+(default,'piqui blainders','cavalo','6'),
+(default,'rico e morto','scifi','7');
+
+create database restaurante;
+
+create table pratos (
+nome varchar(20),
+descrição tinytext,
+preço int
+)default charset=utf8mb4;
+
+alter table pratos
+add column id int,
+add primary key (id);
+
+alter table pratos
+modify column id int not null auto_increment;
