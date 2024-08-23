@@ -1,0 +1,52 @@
+-- desafio
+alter table tabeladejogos
+rename to Coleção;
+
+alter table coleção
+rename column Nome_do_jogo to Jogos;
+
+alter table coleção
+rename column Nome_Popular to Apelido;
+
+alter table coleção
+rename column Estilo_do_jogo to Genero;
+
+alter table coleção
+rename column Requisitos_para_Pc to Requisitos_Min;
+
+alter table coleção
+rename column Bonecos_jogaveis to Personagens;
+
+alter table coleção
+modify Multiplayer boolean;
+
+alter table coleção
+modify Personagens int after multiplayer;
+
+alter table coleção
+rename column jogos to jogo;
+
+alter table coleção
+add column Empresa varchar(20) after apelido;
+
+
+
+alter table coleção
+add column Lançamento year after empresa;
+
+alter table coleção
+add column Premios tinytext;
+
+
+
+update coleção set lançamento='2009',premios='The Game Award, BAFTA video Games Awards, Golden Joystick,Sports Emmy Awards' where id=2;
+
+update coleção set lançamento='2014',empresa='Ubisoft',premios='Sem premiações' where id=1;
+
+insert into coleção values
+(default,'Counter-Strike','CS','Valve Corporation','2012','FPS','1','60','Médio','The Game Awards');
+
+insert into coleção values
+(default,'Dota 2','Dotinha','Valve Corporation','2013','Moba 5v5','1','123','Médio','Indicação: The Game Awards');
+
+select * from coleção
