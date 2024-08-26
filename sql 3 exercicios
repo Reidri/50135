@@ -1,0 +1,57 @@
+-- desafio
+update professores
+set salario=3.000 where id=2;
+
+select * from professores;
+
+update livros
+set disponivel=0 where id=1;
+
+select * from livros;
+
+update funcionarios
+set cargo='CPD' where id=1;
+
+select * from funcionarios;
+
+update filmes
+set faixa_etaria=12 where id=1;
+
+select * from filmes;
+
+update albuns
+set artista='yung lixo' where id=2;
+
+
+delete from albuns where artista='mc vv';
+
+select * from albuns;
+
+delete from professores where salario <3000;
+
+select * from professores;
+
+delete from livros where ano>2000;
+
+select * from livros;
+
+insert into funcionarios values
+(default,'Marcos Robalo','Pescador','5.000','2020-06-14');
+
+select * from funcionarios;
+
+delete from funcionarios where id=1;
+
+delete from filmes where genero='comédia';
+
+truncate alunos;
+
+select * from alunos;
+
+insert into alunos values
+(default,'Rodrigo Hrynyszyn Ortmann','2001-03-13','9A','Reidriguinho@emailzada.com');
+
+select * from alunos;
+
+insert into alunos values
+(default,'joao','2003-03-03','9A','joao@email.com');
