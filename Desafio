@@ -49,4 +49,33 @@ insert into coleção values
 insert into coleção values
 (default,'Dota 2','Dotinha','Valve Corporation','2013','Moba 5v5','1','123','Médio','Indicação: The Game Awards');
 
-select * from coleção
+select * from coleção;
+
+-- mexendo 26/08/2024
+
+create table ProPlayers(
+id int not null auto_increment,
+nome varchar(50),
+apelido varchar(50),
+Jogo varchar(50),
+Campeonatos tinytext,
+primary key (id)
+)default charset=utf8mb4;
+
+alter table proplayers
+add column nascimento date after jogo;
+
+insert into proplayers values
+(default,'Lee Sang-hyeok','Faker','League of Legends','1996-5-7','10 títulos da League of Legends Champions Korea (LCK) que somam 600 vitórias na carreira,  dois(2) títulos do Mid-Season Invitational (MSI) e quatro(4) títulos do Campeonato Mundial.');
+
+select * from proplayers;
+
+insert into proplayers values
+(default,'Stephen Myers','Sandstorm','Brawlhalla e Super Smash Bros','2002-02-3','Sandstorm ja ganhou 13 campeonatos(Major, regionais e internacionais), entre eles estão: BCX 2021 North America Doubles, BCX 2020 North America Singles, BCX 2020 North America Doubles, BCX 2019 Singles, BCX 2019 Doubles, and BCX 2018 Singles');
+
+alter table proplayers
+modify column campeonatos text;
+
+
+insert into proplayers values
+(default,'Gabriel Toledo de Alcântara','FalleN, Professor','Counter-Strike','1991-05-30','WCG Brasil e o WCG Pan-Americano no mesmo dia(2010), WCG Brasil de 2011,  MLG Major Columbus 2016, 3ª temporada da ESL Pro League. Premios individuais: MVP da DreamHack Austin 2016, MVP da ESL One Cologne 2017, MVP da BLAST Pro Series Copenhagen 2017, MVP da ZOTAC Cup Masters 2018 Grand Finals, entre muitos outros titulos e conquistas do nosso querido Professor.');
