@@ -1,0 +1,160 @@
+create database escola;
+
+create table alunos (
+id int not null auto_increment,
+nome varchar(255),
+data_nascimento date,
+turma varchar(2),
+email varchar(255),
+primary key (id)
+)default charset = utf8mb4;
+
+create table professores (
+id int not null auto_increment,
+nome varchar(255),
+materia varchar(30),
+salario decimal(4,3),
+primary key (id)
+)default charset = utf8mb4;
+
+insert into alunos values
+(default,'joaozinho','2003-04-05','8A','joazinho@email.com'),
+(default,'danielzinho','2003-03-01','8A','danielzinho@email.com'),
+(default,'rodriguinho','2001-03-13','8A','rodriguinho@email.com');
+
+insert into professores values
+(default,'joao','matematica','1.500'),
+(default,'daniel','portugues','1.324');
+
+create database biblioteca;
+
+create table livros (
+id int not null auto_increment,
+titulo varchar(50),
+autor varchar (100),
+ano int,
+disponivel boolean,
+primary key (id)
+)default charset = utf8mb4;
+
+insert into livros values
+(default,'joao capelo gaivota','richard bach','1905','1'),
+(default,'dinastia zem','jeronimo albert johnson','2004','0');
+
+create database empresa;
+
+create table funcionarios (
+id int not null auto_increment,
+nome varchar (100),
+cargo varchar (30),
+salario decimal(4,3),
+data_adm date,
+primary key (id)
+)default charset = utf8mb4;
+
+insert into funcionarios values
+(default,'danielzinho','joalheiro','9.400','2002-06-18');
+
+
+-- select, order by e where
+select * from alunos
+where turma='8A';
+
+update alunos
+set turma='8B' where id='5';
+
+select * from alunos
+where turma='8A';
+
+select nome,salario from professores
+order by nome asc;
+
+select * from livros
+where disponivel='1' order by id desc;
+
+select nome,salario from funcionarios
+order by salario desc;
+
+select * from alunos
+where data_nascimento > '2000-01-01' order by nome asc;
+
+-- operadores relacionais e between
+select * from professores;
+
+insert into professores values
+(default,'marcao','historia','6.000');
+
+select * from professores
+where salario > 3.001;
+
+select * from livros
+where ano between 1990 and 2005;
+
+describe funcionarios;
+
+select * from funcionarios
+where data_adm < '2002-01-01';
+
+-- and e or
+update alunos
+set turma='9B',data_nascimento='2003-02-02' where id=6;
+select * from alunos
+where turma='9B' and data_nascimento > '2003-01-01';
+select * from professores
+where materia = 'matematica' or 'fisica';
+
+-- in
+
+insert into livros values
+(default,'reri potah','j.k rowling','2001','1');
+
+select 	* from livros
+where autor in ('j.k rowling','george r.r. martin');
+
+insert into funcionarios values
+(default,'jerundio','gerente','9.000','2003-04-17');
+
+select * from funcionarios
+where cargo in ('gerente','analista');
+
+-- like e wildcard
+insert into alunos values
+(default,'albertinho','2005-03-23','9B','albertinho@nuncamaisfalto.com');
+
+select * from alunos
+where nome like  'a%';
+
+describe livros;
+
+insert into livros values
+(default,'o amor venceu','lula','2024','0');
+
+select * from livros
+where titulo like '%amor%';
+
+select * from funcionarios
+where cargo like '%s';
+
+-- distinct
+
+select distinct turma from alunos;
+
+select distinct autor from livros;
+
+-- funções de agregaçã
+select count(nome) from alunos;
+
+select avg(salario) from professores;
+
+select min(ano) from livros;
+
+-- group by e having
+
+select count(id),turma from alunos
+group by turma;
+
+select avg(salario),cargo from funcionarios
+group by cargo;
+
+select count(id),turma from alunos
+group by turma having count(id)>1;
