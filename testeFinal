@@ -1,0 +1,234 @@
+create database empresaa;
+create table funcionarios(
+id int not null auto_increment,
+nome varchar(50),
+cargo varchar(30),
+salario decimal(4,3),
+departamento int,
+primary key(id)
+)default charset=utf8mb4;
+
+create table departamento(
+id_depart int not null auto_increment,
+nome varchar(50),
+primary key(id_depart)
+)default charset=utf8mb4;
+alter table funcionarios
+add column departamento int;
+
+alter table funcionarios
+add foreign key(departamento)
+references departamento(id_depart);
+
+create database carros;
+
+create table carro(
+id int not null auto_increment,
+marca varchar(50),
+modelo varchar(50),
+ano year,
+proprietario int,
+primary key(id)
+)default charset=utf8mb4;
+
+create table proprietarios(
+id_prop int not null auto_increment,
+nome varchar(50),
+idade int,
+primary key(id_prop)
+)default charset=utf8mb4;
+
+alter table carro
+add foreign key(proprietario)
+references proprietarios(id_prop);
+
+create database computador;
+
+create table computadores(
+id int not null auto_increment,
+marca varchar(50),
+modelo varchar(50),
+processador varchar(50),
+ram int,
+usuario int,
+primary key(id)
+)default charset=utf8mb4;
+
+create table usuarios(
+id_usu int not null auto_increment,
+nome varchar(50),
+email varchar(100),
+primary key(id_usu)
+)default charset=utf8mb4;
+
+alter table computadores
+add foreign key(usuario)
+references usuarios(id_usu);
+
+create database celular;
+
+create table celulares(
+id int not null auto_increment,
+marca varchar(50),
+modelo varchar(50),
+sistema_op varchar(50),
+proprietario int,
+primary key(id)
+)default charset=utf8mb4;
+
+create table proprietarios(
+id_prop int not null auto_increment,
+nome varchar(50),
+idade int,
+primary key(id_prop)
+)default charset=utf8mb4;
+
+alter table celulares
+add foreign key(proprietario)
+references proprietarios(id_prop);
+
+create database redes_sociais;
+
+create table usuarios(
+id int not null auto_increment,
+nome varchar(50),
+email varchar(100),
+primary key(id)
+)default charset=utf8mb4;
+
+create table posts(
+id_post int not null auto_increment,
+conteudo text,
+data_publi date,
+usuario int,
+primary key(id_post)
+)default charset=utf8mb4;
+
+create table comentarios(
+id_coment int not null auto_increment,
+conteudo text,
+data_publi date,
+usuario int,
+post int,
+primary key(id_coment)
+)default charset=utf8mb4;
+
+alter table posts
+add foreign key (usuario)
+references usuarios(id);
+
+alter table comentarios
+add foreign key(post)
+references posts(id_post);
+
+alter table comentarios
+add foreign key(usuario)
+references usuarios(id);
+
+select * from funcionarios;
+
+select f.nome,f.cargo from funcionarios as f join departamento as d on f.id=d.id_depart where d.nome like 'vendas';
+
+select f.nome,d.nome from funcionarios as f join departamento as d on f.id=d.id_depart;
+
+select nome from funcionarios where salario > 5.000;
+
+select * from funcionarios;
+insert into funcionarios (nome,cargo,salario) values
+('teste','TI','6.000');
+
+select f.nome from funcionarios as f join departamento as d on f.id=d.depart_id where d.nome like 'TI' or d.nome like 'Marketing';
+
+select * from funcionarios where admissão between '2020-01-01' and '2022-12-31';
+
+select * from funcionarios where nome like 'M%';
+
+select d.nome from funcionarios as f join departamento as d on f.id=d.depart_id;
+
+select avg(salario) from funcionarios;
+
+select nome from funcionarios order by salario asc limit 1;
+
+
+update funcionarios
+set cargo = 'Analista de Sistemas' where id = 5;
+
+delete from funcionarios where id = 10;
+
+select marca,modelo from carro;
+
+select p.nome,c.nome from carro as c join proprietarios as p on c.id=p.id_prop;
+
+select * from carros where ano < 2010;
+
+select p.nome from carro as c join proprietarios as p on c.id=p.id_prop where marca like 'Toyota';
+
+select count(marca),nome from carro group by marca;
+
+select count(marca) as nn,nome from carro group by marca having nn>5;
+
+update carro
+set ano = 2015 where id = 3;
+
+delete from carro where id=7;
+
+select modelo,processador from computadores;
+
+select u.nome,c.marca,c.modelo from computadores as c join usuarios as u on c.id=u.id_usu;
+
+select * from computadores where ram > 8;
+
+select u.nome from computadores as c join usuarios as u on c.id=u.id_usu where c.marca like 'Dell';
+
+select count(id),marca from computadores group by id;
+
+
+update computadores
+set processador='Intel Core i7' where id =2;
+
+delete from computadores where id=6;
+
+select modelo,marca from celulares;
+
+select p.nome,c.nome from celulares as c join proprietarios as p on c.id=p.id_prop;
+
+select * from celulares where sistema_op like 'Android';
+
+select p.nome from celulares as c join proprietarios as p on c.id=p.id_prop where marca like 'Samsung';
+
+select count(id),sistema_op from celulares group by id;
+
+select count(id)as n,sistema_op from celulares group by id having n >10;
+
+update celulares
+set sistema_op = 'ios' where id =4;
+
+delete from celulares where id=9;
+
+select nome,email from usuarios;
+
+select conteudo, data_publi from posts;
+
+select u.nome,c.conteudo from comentarios as c join usuarios as u on c.id_coment=u.id;
+
+select p.conteudo, c.conteudo from comentarios as c join posts as p on c.id_coment=p.id_posts;
+
+select * from posts where data_publi > '2023-01-01';
+
+select conteudo from coments where usuario = 3;
+
+select count(id),usuario from posts group by id; 
+
+select count(id)as n,usuario from posts group by id having n>5;
+
+update posts
+set conteudo = 'novo conteudo' where id =413;
+
+delete from comentarios where post = 3;
+
+delete from comentarios where usuario = 1293;
+delete from posts where usuario = 1293;
+
+select * from personagens;
+
+
